@@ -19,7 +19,9 @@ void setup() { // the setup function runs once when you press reset or power the
   Led Blinker(time, LED_BUILTIN); // declaration of an object
   pBlinker= &Blinker; // set pointer to object
 
-  pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output
+
+  pBlinker->blinks();
 }
 
 void loop() { // the loop function runs over and over again forever
