@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Led.h>
 
-Led::Led(int interval, int pin): time(interval), ledBuiltIn(pin) {} // constructor with initialization list
+Led::Led(int interval, int pin): time(interval), blinkLed(pin) {} // constructor with initialization list
 
 bool Led::setInterval(int interval) {
     if(interval<= 0)
@@ -11,8 +11,17 @@ bool Led::setInterval(int interval) {
 }
 
 void Led::blink() {
-    digitalWrite(ledBuiltIn, HIGH);
+    digitalWrite(blinkLed, HIGH);
     delay(time);
-    digitalWrite(ledBuiltIn, LOW);
+    digitalWrite(blinkLed, LOW);
     delay(time);
+}
+
+void Led::blinks(int quantity, int blinksInterval, int ledBuiltIn) {
+    for(int i= 0; i< quantity; i++) {
+        digitalWrite(ledBuiltIn, HIGH);
+        delay(blinksInterval);
+        digitalWrite(ledBuiltIn, LOW);
+        delay(blinksInterval);
+    }
 }
