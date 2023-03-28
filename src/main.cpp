@@ -8,13 +8,13 @@
 
 #define LED_PIN 8 // pin used for LED
 #define TIME 1000 // time of blink
-#define DECREASE 100 // decrease interval
+#define PERCENT 20 // decrease interval in %
 
 Led *pBlinker; // pointer to Led Class Object
-int *pTime; // pointer to time
+float *pTime= NULL; // pointer to time
 
 void setup() { // the setup function runs once when you press reset or power the board
-  int time= TIME; // set tiem as defined
+  float time= TIME; // set tiem as defined
   pTime= &time; // set pointer to varable
 
   Led Blinker(time, LED_PIN); // declaration of an object
@@ -27,6 +27,6 @@ void setup() { // the setup function runs once when you press reset or power the
 }
 
 void loop() { // the loop function runs over and over again forever
+  *pTime= pBlinker->setInterval((int)*pTime)? TIME: *pTime* (100- PERCENT)/ 100; // conditional statement
   pBlinker->blink(); // calling an object's method
-  *pTime= (pBlinker->setInterval(*pTime))? TIME: *pTime- DECREASE; // conditional statement
 }
