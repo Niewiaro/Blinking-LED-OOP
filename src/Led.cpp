@@ -17,11 +17,14 @@ void Led::blink() {
     delay(time);
 }
 
-void Led::blinks(int quantity, int blinksInterval, int ledBuiltIn) {
+void Led::blinks(int quantity, int blinksInterval, int ledBuiltIn, bool stayHigh) {
     for(int i= 0; i< quantity; i++) {
         digitalWrite(ledBuiltIn, HIGH);
         delay(blinksInterval);
         digitalWrite(ledBuiltIn, LOW);
         delay(blinksInterval);
     }
+
+    if(stayHigh)
+        digitalWrite(ledBuiltIn, HIGH);
 }

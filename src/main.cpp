@@ -23,7 +23,7 @@ void setup() { // the setup function runs once when you press reset or power the
   pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output (13)
   pinMode(LED_PIN, OUTPUT); // initialize digital pin LED_PIN as an output
 
-  pBlinker->blinks();
+  pBlinker->blinks(5, 80, LED_BUILTIN, true);
 }
 
 void loop() { // the loop function runs over and over again forever
