@@ -6,6 +6,7 @@
 #include <Arduino.h> // include Arduino library
 #include <Led.h> // include header file of a class
 
+#define LED_PIN 8 // pin used for LED
 #define TIME 1000 // time of blink
 #define DECREASE 100 // decrease interval
 
@@ -16,10 +17,11 @@ void setup() { // the setup function runs once when you press reset or power the
   int time= TIME; // set tiem as defined
   pTime= &time; // set pointer to varable
 
-  Led Blinker(time, LED_BUILTIN); // declaration of an object
+  Led Blinker(time, LED_PIN); // declaration of an object
   pBlinker= &Blinker; // set pointer to object
 
-  pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output
+  pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output (13)
+  pinMode(LED_PIN, OUTPUT); // initialize digital pin LED_PIN as an output
 
   pBlinker->blinks();
 }
