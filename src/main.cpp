@@ -12,6 +12,7 @@
 #define PERCENT 20 // decrease interval in %
 
 Led *pBlinker; // pointer to Led Class Object
+Led *pLedBuiltin; // pointer to Led Class Object
 float *pTime= NULL; // pointer to time
 
 void setup() { // the setup function runs once when you press reset or power the board
@@ -20,15 +21,24 @@ void setup() { // the setup function runs once when you press reset or power the
 
   pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output (13)
   pinMode(LED_PIN, OUTPUT); // initialize digital pin LED_PIN as an output
-  
-  Led builtinLed(time, LED_BUILTIN); // declaration of an object of LED_BUILTIN
+  pinMode(BUTTON_PIN, INPUT_PULLUP); // button as imput
+
+  Led ledBuiltin(time, LED_BUILTIN); // declaration of an object of LED_BUILTIN
+  pLedBuiltin= &ledBuiltin; // set pointer to object
   Led blinker(time, LED_PIN); // declaration of an object
   pBlinker= &blinker; // set pointer to object
 
-  builtinLed.blinks(5, 80, true);
+  ledBuiltin.blinks(5, 80, false);
 }
 
 void loop() { // the loop function runs over and over again forever
-  *pTime= pBlinker->setInterval((int)*pTime)? TIME: *pTime* (100- PERCENT)/ 100; // conditional statement
-  pBlinker->blink(); // calling an object's method
+  if(digitalRead(BUTTON_PIN)== LOW){
+    pLedBuiltin->blinks(3,100);
+    pBlinker->blinks(3,100);
+    *pTime= TIME;
+  }
+  else{
+    *pTime= pBlinker->setInterval((int)*pTime)? TIME: *pTime* (100- PERCENT)/ 100; // conditional statement
+    pBlinker->blink(); // calling an object's method
+  }
 }
