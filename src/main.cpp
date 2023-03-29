@@ -18,12 +18,12 @@ void setup() { // the setup function runs once when you press reset or power the
   float time= TIME; // set tiem as defined
   pTime= &time; // set pointer to varable
 
+  pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output (13)
+  pinMode(LED_PIN, OUTPUT); // initialize digital pin LED_PIN as an output
+  
   Led builtinLed(time, LED_BUILTIN); // declaration of an object of LED_BUILTIN
   Led blinker(time, LED_PIN); // declaration of an object
   pBlinker= &blinker; // set pointer to object
-
-  pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output (13)
-  pinMode(LED_PIN, OUTPUT); // initialize digital pin LED_PIN as an output
 
   builtinLed.blinks(5, 80, true);
 }
