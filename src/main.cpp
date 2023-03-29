@@ -6,6 +6,7 @@
 #include <Arduino.h> // include Arduino library
 #include <Led.h> // include header file of a class
 
+#define BUTTON_PIN 7 // pin used for button
 #define LED_PIN 8 // pin used for LED
 #define TIME 1000 // time of blink
 #define PERCENT 20 // decrease interval in %
@@ -17,13 +18,14 @@ void setup() { // the setup function runs once when you press reset or power the
   float time= TIME; // set tiem as defined
   pTime= &time; // set pointer to varable
 
-  Led Blinker(time, LED_PIN); // declaration of an object
-  pBlinker= &Blinker; // set pointer to object
+  Led builtinLed(time, LED_BUILTIN); // declaration of an object of LED_BUILTIN
+  Led blinker(time, LED_PIN); // declaration of an object
+  pBlinker= &blinker; // set pointer to object
 
   pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output (13)
   pinMode(LED_PIN, OUTPUT); // initialize digital pin LED_PIN as an output
 
-  pBlinker->blinks(5, 80, LED_BUILTIN, true);
+  builtinLed.blinks(5, 80, true);
 }
 
 void loop() { // the loop function runs over and over again forever
