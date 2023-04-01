@@ -1,5 +1,5 @@
 // Github
-// https://github.com/Niewiaro/Arduino-FORBOT-1-OOP
+// https://github.com/Niewiaro/Blinking-LED-OOP
 // inspiration
 // https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink
 
